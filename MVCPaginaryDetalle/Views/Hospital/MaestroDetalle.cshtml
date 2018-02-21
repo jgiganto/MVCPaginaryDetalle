@@ -1,0 +1,55 @@
+﻿@model MVCPaginaryDetalle.Models.PAGINARHOSPITAL_Result
+@{
+    ViewBag.Title = "MaestroDetalle";
+}
+@{ 
+    List<MVCPaginaryDetalle.Models.DOCTOR> doctores = ViewBag.Doctores as List<MVCPaginaryDetalle.Models.DOCTOR>;
+}
+
+<h2>MaestroDetalle</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>NOMBRE</th>
+        <th>DIRECCION</th>
+        <th>TELEFONO</th>
+        <th>CAMAS</th>
+    </tr>
+    <tr>
+        <td>@Model.NOMBRE</td>
+        <td>@Model.DIRECCION</td>
+        <td>@Model.TELEFONO</td>
+        <td>@Model.NUM_CAMA</td>
+    </tr>
+    <tr>
+        <td colspan="4">
+            @Html.ActionLink("Primero", "MaestroDetalle"
+  , "Hospital", new { posicion = 1 }, null) |
+            @Html.ActionLink("Anterior", "MaestroDetalle"
+ , "Hospital", new { posicion = ViewBag.Anterior }, null) |
+            @Html.ActionLink("Siguiente", "MaestroDetalle"
+, "Hospital", new { posicion = ViewBag.Siguiente }, null) |
+            @Html.ActionLink("Ultimo", "MaestroDetalle"
+, "Hospital", new { posicion = ViewBag.Ultimo }, null)
+        </td>
+    </tr>
+</table>
+<hr />
+@if (doctores != null)
+{
+    <table class="table table-bordered">
+        <tr>
+            <th>APELLIDO</th>
+            <th>ESPECIALIDAD</th>
+            <th>SALARIO</th>
+        </tr>
+        @foreach (var doc in doctores)
+        {
+            <tr>
+                <td>@doc.APELLIDO</td>
+                <td>@doc.ESPECIALIDAD</td>
+                <td>@doc.SALARIO</td>
+            </tr>
+        }
+    </table>
+}
